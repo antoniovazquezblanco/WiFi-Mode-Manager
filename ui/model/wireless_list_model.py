@@ -59,7 +59,6 @@ class WirelessListModel(QAbstractItemModel):
         '''
         if orientation == Qt.Horizontal and role == Qt.DisplayRole:
             return ['Device', 'Chipset', 'Mode'][section]
-        return None
 
     def data(self, index, role):
         if index.isValid() and role == Qt.DisplayRole:
