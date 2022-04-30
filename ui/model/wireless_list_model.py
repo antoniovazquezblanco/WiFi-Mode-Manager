@@ -13,7 +13,7 @@ class WirelessListModel(QAbstractItemModel):
         Initialize our abstract item model by calling the super class
         initializer and with an empty list of elements.
         '''
-        QAbstractItemModel.__init__(self, parent, *args)
+        super().__init__(parent, *args)
         self.items = []
 
     def index(self, row, column, parent=QModelIndex()):
