@@ -27,7 +27,14 @@ class WifiModeManagerWindow(QtWidgets.QMainWindow):
         self.actionRefresh.triggered.connect(self.refresh_interfaces)
         self.wireless_list_model = WirelessListModel()
         self.treeView.setModel(self.wireless_list_model)
+        self.wireless_observer = wireless.WirelessUdevObserver()
+        self.wireless_observer.suscribe(self.refresh_interfaces)
         self.refresh_interfaces()
+
+    def closeEvent(self, event):
+        if self.wireless_observer:
+            self.wireless_observer.stop()
+        event.accept()
 
     def show_about(self):
         '''Show the about dialog.'''
