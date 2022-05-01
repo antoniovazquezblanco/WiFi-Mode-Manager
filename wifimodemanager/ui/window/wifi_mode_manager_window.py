@@ -5,12 +5,12 @@ Main program window. Loaded from a qt-designer ui file. Implements main logic
 to handle ui signals.
 '''
 
-import wireless
+from wifimodemanager import wireless
 from qtpy import uic
 from PySide2 import QtWidgets
 from PySide2.QtGui import QIcon
-from ui.dialog.about_dialog import AboutDialog
-from ui.model.wireless_list_model import WirelessListModel
+from wifimodemanager.ui.dialog.about_dialog import AboutDialog
+from wifimodemanager.ui.model.wireless_list_model import WirelessListModel
 
 
 class WifiModeManagerWindow(QtWidgets.QMainWindow):
@@ -21,7 +21,7 @@ class WifiModeManagerWindow(QtWidgets.QMainWindow):
 
     def __init__(self, parent=None):
         super(WifiModeManagerWindow, self).__init__(parent)
-        uic.loadUi(uifile='ui/window/WifiModeManagerWindow.ui',
+        uic.loadUi(uifile='wifimodemanager/ui/window/WifiModeManagerWindow.ui',
                    baseinstance=self)
         self.actionAbout.triggered.connect(self.show_about)
         self.actionRefresh.triggered.connect(self.refresh_interfaces)
