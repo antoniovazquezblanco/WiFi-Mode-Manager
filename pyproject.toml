@@ -1,0 +1,19 @@
+[build-system]
+requires = [
+    "setuptools",
+    "wheel",
+    "PySide2>=5.15.2.1",
+    "pyudev>=0.23.2",
+    "QtPy>=2.0.1",
+    "PyRIC>=0.1.6.3",
+]
+build-backend = "setuptools.build_meta"
+python_requires = ">=3.8"
+
+[project]
+name = "wifi-mode-manager"
+authors = [{name = "Antonio Vázquez-Blanco"}]
+readme = "README.md"
+license = {file = "LICENSE"}
+classifiers = ["License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)"]
+dynamic = ["version", "description", "entry-points"]
