@@ -8,7 +8,6 @@ to handle ui signals.
 from wifimodemanager import wireless
 from qtpy import uic
 from PySide2 import QtWidgets
-from PySide2.QtGui import QIcon
 from wifimodemanager.ui.dialog.about_dialog import AboutDialog
 from wifimodemanager.ui.model.wireless_list_model import WirelessListModel
 
@@ -28,7 +27,7 @@ class WifiModeManagerWindow(QtWidgets.QMainWindow):
         self.wireless_list_model = WirelessListModel()
         self.treeView.setModel(self.wireless_list_model)
         self.wireless_observer = wireless.WirelessUdevObserver()
-        self.wireless_observer.suscribe(self.refresh_interfaces)
+        self.wireless_observer.subscribe(self.refresh_interfaces)
         self.refresh_interfaces()
 
     def closeEvent(self, event):
