@@ -8,7 +8,7 @@
             "name": "WifiModeManager",
             "type": "python",
             "request": "launch",
-            "program": "main.py",
+            "program": "wifimodemanager/__main__.py",
             "console": "integratedTerminal",
             "justMyCode": true
         }
