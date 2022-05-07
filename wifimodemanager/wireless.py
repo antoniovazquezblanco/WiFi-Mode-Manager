@@ -13,8 +13,8 @@ def get_wireless_interfaces():
     '''
     Get wireless interfaces information
     '''
-    devs = pyw.winterfaces()
-    cards = [pyw.getcard(x) for x in devs]
+    devices = pyw.winterfaces()
+    cards = [pyw.getcard(x) for x in devices]
     wireless_interfaces = [
         {
             'dev': x.dev,
@@ -25,7 +25,12 @@ def get_wireless_interfaces():
     ]
     return wireless_interfaces
 
+
 class WirelessUdevObserver():
+    '''
+    Class to handle subscriptions to the udev device changes service.
+    '''
+
     def __init__(self):
         context = pyudev.Context()
         monitor = pyudev.Monitor.from_netlink(context)
@@ -35,11 +40,21 @@ class WirelessUdevObserver():
         self._callbacks = []
 
     def stop(self):
+        '''
+        Stop the observer joining the underlaying thread.
+        '''
         self._observer.stop()
 
-    def suscribe(self, callback):
+    def subscribe(self, callback):
+        '''
+        Subscribe a callback function to the udev events.
+        '''
         self._callbacks.append(callback)
 
-    def _event(self, action, device):
-        for cb in self._callbacks:
-            cb()
+    def _event(
+        self,
+        action,  # pylint: disable=unused-argument
+        device  # pylint: disable=unused-argument
+    ):
+        for callback in self._callbacks:
+            callback()
